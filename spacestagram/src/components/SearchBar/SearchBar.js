@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchBar=(props)=>{
 
-    const {searchField, onChange, handleClick}=props
+    const {searchField, onChange, onClick}=props
     
     return(
         <div>  
@@ -12,7 +12,7 @@ const SearchBar=(props)=>{
                 type="text" 
                 value={searchField} 
                 onChange={e=>{onChange(e.target.value)}}/>
-                <button onClick={handleClick}>Search</button>
+                <button onClick={onClick}>Search</button>
             </form>
         </div>
     )

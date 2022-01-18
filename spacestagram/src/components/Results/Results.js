@@ -3,12 +3,12 @@ import DisplayItem from "../DisplayItem/DisplayItem";
 
 const Results=(props)=>{
 
-    const {searchResults} = props;
+    const {results} = props;
 
     
     let key = 0;
     return(
-        searchResults.map((pictureItem)=>{ 
+        results.map((pictureItem)=>{ 
                 key++;
                 return(
                   <DisplayItem 

@@ -15,8 +15,6 @@ const dataFetcher=()=>{
                     let resultObj = {
                         picture: item.links[0].href,
                         description: item.data[0].description,
-                        location: item.data[0].location,
-                        keywords: item.data[0].keywords, 
                         title: item.data[0].title,
                         date: item.data[0].date_created
                     }
@@ -29,6 +27,30 @@ const dataFetcher=()=>{
              .catch((err)=>console.log("error"))
                 
     }
-    return {searchAPI}
+
+    const randomPictureAPI=()=>{
+        const url = `https://api.nasa.gov/planetary/apod?api_key=U50YdjBHsIpo8n2A4zuws92gF2sXp9T7WDJ64KP9&count=4`;
+        return axios.get(url)
+             .then((response)=>{
+                const itemArray = response.data
+                const resultsArray = [];
+
+                for (const item of itemArray) {
+                    let resultObj = {
+                        picture: item.hdurl,
+                        description: item.explanation,
+                        title: item.title,
+                        date: item.date
+                    }
+                    resultsArray.push(resultObj)
+                }
+                
+                return resultsArray
+                
+             })
+             .catch((err)=>console.log("error"))
+                
+    }
+    return {searchAPI, randomPictureAPI}
 }
 export default dataFetcher;
