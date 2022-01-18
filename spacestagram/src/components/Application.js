@@ -1,42 +1,33 @@
 import React from "react";
 import dataFetcher from "../hooks/dataFetcher"
-import SearchBar from "./SearchBar"
+import SearchBar from "./SearchBar/SearchBar"
 import { useState } from "react";
-import DisplayItem from "./DisplayItem";
+import DisplayItem from "./DisplayItem/DisplayItem";
+import Results from "./Results/Results";
 
 
 export default function Application(props){
     const {searchAPI} = dataFetcher();
     const [searchField, setSearchField] = useState("")
-    const [searchResults, setSearchResults] = useState("")
+    const [searchResults, setSearchResults] = useState([])
 
     
     const handleClick=(e)=>{
         e.preventDefault();
-        searchAPI(searchField).then(data=>{
+        searchAPI(searchField)
+        .then(data=>{
             setSearchResults(data)
         })
+        
     }
     
-    const pictureItems=searchResults.map((pictureItem)=>{ 
-        return(
-          <DisplayItem 
-          key={1} 
-          picture={pictureItem.picture} 
-          description = {pictureItem.description} 
-          location = {pictureItem.location} 
-          keywords={pictureItem.keywords}
-          title={pictureItem.title}
-          date={pictureItem.date}
-          />
-        )
-      }) 
+   
 
     return(
         <div>
             <main>
                 <SearchBar handleClick={handleClick} onChange={setSearchField}/>
-                {searchResults && pictureItems}
+                {searchResults.length != 0? <Results searchResults= {searchResults}/> : <h2>Your query returned no results</h2>}
             </main>
         </div>
     )
