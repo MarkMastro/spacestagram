@@ -35,7 +35,11 @@ const DisplayItem=(props)=>{
         }
         if (!like){
             console.log("unlike localstore",JSON.parse(localStorage.getItem("likes")))
-            // localStorage.setItem("likes",localStorage.getItem("likes").slice(localStorage.getItem("likes").indexOf(id),1))
+            let array = JSON.parse(localStorage.getItem("likes"));
+            if(array.length > 0){
+                let index = array.findIndex(ind=>ind.id=id)
+                array.splice(index,1)
+                localStorage.setItem("likes", JSON.stringify(array))}
         }
         
       }, [like]);
