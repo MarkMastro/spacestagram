@@ -5,7 +5,6 @@ import styles from "../DisplayItem/DisplayItem.css"
 
 const DisplayItem=(props)=>{
     const [like, setLike] = useState(false)
-    console.log("disp item", props)
    const {
         id,
         picture,
@@ -15,31 +14,31 @@ const DisplayItem=(props)=>{
     } = props
     const likeClick=()=>{
         setLike((prev)=>!prev)
-   
+        
     }
     useEffect(() => {
         if(like){
-            console.log("storage", JSON.parse(localStorage.getItem("likes")))
-            let array=JSON.parse(localStorage.getItem("likes"));
+            let array=JSON.parse(localStorage.getItem("likes")) || [];
             array.push(
-                {"id" : id, 
-                 picture: {
+                {   id,
                     picture,
                     description,
                     title,
                     date 
                 }
-            })
+            )
             localStorage.setItem("likes", JSON.stringify(array))
        
         }
         if (!like){
-            console.log("unlike localstore",JSON.parse(localStorage.getItem("likes")))
-            let array = JSON.parse(localStorage.getItem("likes"));
+            let array = JSON.parse(localStorage.getItem("likes")) || [];
             if(array.length > 0){
-                let index = array.findIndex(ind=>ind.id=id)
-                array.splice(index,1)
-                localStorage.setItem("likes", JSON.stringify(array))}
+                let index = array.findIndex(ind=>ind.title==title)
+                
+                if(index!=-1) {
+                    array.splice(index,1)
+                    localStorage.setItem("likes", JSON.stringify(array))}
+                }
         }
         
       }, [like]);

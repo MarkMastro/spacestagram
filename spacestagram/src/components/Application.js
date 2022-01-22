@@ -15,7 +15,7 @@ export default function Application(props){
     const [mode, setMode] = useState('Home')
     const {searchAPI, randomPictureAPI}= useDataFetcher();
 
-    localStorage.setItem("likes", JSON.stringify([]))
+    // localStorage.setItem("likes", JSON.stringify([]))
 
     // const loader = useRef(null);
 
@@ -57,17 +57,24 @@ export default function Application(props){
         e.preventDefault();
         console.log("home")
         setResults([])
+        console.log("home results", results)
         setSearchField('')
         randomPictureAPI()
         .then((newResults)=>{
             setResults(newResults)
         })
         setMode('Home')
-        // setPage(1);
+    }
+    
+    const loadLikesPage=()=>{
+        setMode("Likes")
+        console.log("load likes", JSON.parse((localStorage.getItem("likes"))))
+       setResults(JSON.parse((localStorage.getItem("likes"))))
     }
 
     
   const handleScroll = () => {
+    if(mode == "Likes"){return}
     if (isLoading) {
       return;
     }
@@ -88,6 +95,10 @@ export default function Application(props){
     return(
         <div>
             <main>
+                <div onClick={loadLikesPage}>
+                <h2> Like Page</h2>
+
+                </div>
                 <SearchBar onClick={searchClick} onChange={setSearchField}/>
                 <div onClick={homeClick}>
                     <FaHome/>

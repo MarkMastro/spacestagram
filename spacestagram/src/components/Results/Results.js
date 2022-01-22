@@ -11,7 +11,6 @@ const Results=(props)=>{
     return(
         results.map((pictureItem)=>{ 
             id++
-            console.log("poicture iten", pictureItem)
                 return(
                   <DisplayItem 
                   id={id} 
