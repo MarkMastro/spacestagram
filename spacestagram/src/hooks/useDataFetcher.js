@@ -1,8 +1,8 @@
-import axios from "axios";
-import{useState} from "react";
+import { useState, useEffect, useCallback } from "react";
+    import axios from "axios";
 
-const dataFetcher=()=>{
-
+const useDataFetcher=()=>{
+    
     const searchAPI=(searchField)=>{
         const url = `https://images-api.nasa.gov/search?q=${searchField}&media_type=image`;
         return axios.get(url)
@@ -10,7 +10,7 @@ const dataFetcher=()=>{
                  
                 const itemArray = response.data.collection.items
                 const resultsArray = [];
-
+                console.log("search res", itemArray)
                 for (const item of itemArray) {
                     let resultObj = {
                         picture: item.links[0].href,
@@ -20,6 +20,7 @@ const dataFetcher=()=>{
                     }
                     resultsArray.push(resultObj)
                 }
+                console.log("results arr", resultsArray)
                 
                 return resultsArray
                 
@@ -44,7 +45,6 @@ const dataFetcher=()=>{
                     }
                     resultsArray.push(resultObj)
                 }
-                
                 return resultsArray
                 
              })
@@ -53,4 +53,4 @@ const dataFetcher=()=>{
     }
     return {searchAPI, randomPictureAPI}
 }
-export default dataFetcher;
+export default useDataFetcher;

@@ -6,17 +6,18 @@ const Results=(props)=>{
     const {results} = props;
 
     
-    let key = 0;
+    let id = 0;
+    console.log("resultsxx", results)
     return(
         results.map((pictureItem)=>{ 
-                key++;
+            id++
+            console.log("poicture iten", pictureItem)
                 return(
                   <DisplayItem 
-                  key={key} 
+                  id={id} 
+                  key={id}
                   picture = {pictureItem.picture} 
                   description = {pictureItem.description} 
-                  location = {pictureItem.location} 
-                  keywords = {pictureItem.keywords}
                   title = {pictureItem.title}
                   date = {pictureItem.date}
                   />
