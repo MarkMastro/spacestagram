@@ -2,5 +2,34 @@
     display: flex;
   flex-direction: column;
   align-items: left;
-  width: 400px;
+  width: 614px;
+  background-color: rgb(255, 255, 255);
+  border: 1px rgb(182, 181, 181) solid;
+
+  border-radius: 0.5%;
+  margin: 10px 0px;
+}
+img{
+    height:614px;
+    width: 614px;
+}
+h4{
+    height:1em;
+    margin: 0;
+}
+h3{
+    margin:5px 0px 0px 30px;
+}
+.footer{
+    display: flex;
+    flex-direction:row ;
+    justify-content: space-between;
+    margin: 5px 30px;
+    
+}
+
+.description{
+    margin: 10px 30px;
+    font-size: 14px;
+    font-weight: 500;
 }
