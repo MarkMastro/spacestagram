@@ -4,7 +4,6 @@ import useEvent from '../hooks/useEvent'
 import SearchBar from './SearchBar/SearchBar'
 import Results from './Results/Results.js'
 import { FaHome, FaRegHeart } from 'react-icons/fa'
-import styles from './Application.css'
 
 export default function Application (props) {
   const [searchField, setSearchField] = useState('')
@@ -14,6 +13,8 @@ export default function Application (props) {
   const [mode, setMode] = useState('Home')
   const { searchAPI, randomPictureAPI } = useDataFetcher()
 
+
+  //Create initial posts to load when entering the site
   useEffect(() => {
     randomPictureAPI()
       .then((newResults) => {
@@ -22,6 +23,8 @@ export default function Application (props) {
       })
   }, [])
 
+  //handles searches when search button clicked
+  
   const searchClick = (e) => {
     e.preventDefault()
     setMode('Search')
@@ -45,12 +48,13 @@ export default function Application (props) {
       })
     setMode('Home')
   }
-
+  //load posts that were liked from local storage
   const loadLikesPage = () => {
     setMode('Likes')
     setResults(JSON.parse((localStorage.getItem('likes'))))
   }
 
+  //load more posts when bottom of page reached (infinite scroll)
   const handleScroll = () => {
     if (mode === 'Likes') { return }
     if (isLoading) {

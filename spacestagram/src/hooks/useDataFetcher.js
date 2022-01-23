@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 const useDataFetcher = () => {
+
+    //use nasas search api to find posts corresponding to search terms
   const searchAPI = (searchField) => {
     const url = `https://images-api.nasa.gov/search?q=${searchField}&media_type=image`
     return axios.get(url)
@@ -23,7 +25,7 @@ const useDataFetcher = () => {
       })
       .catch((err) => console.log('error'))
   }
-
+//get random pictures from nasa's picture of the day api,loads 4 at a time
   const randomPictureAPI = () => {
     const url = 'https://api.nasa.gov/planetary/apod?api_key=U50YdjBHsIpo8n2A4zuws92gF2sXp9T7WDJ64KP9&count=4'
     return axios.get(url)

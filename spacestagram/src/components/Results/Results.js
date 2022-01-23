@@ -4,7 +4,7 @@ import DisplayItem from '../DisplayItem/DisplayItem'
 const Results = (props) => {
   const { results } = props
 
-  let id = 0
+  let id = 0;
   return (
     results.map((pictureItem) => {
       id++

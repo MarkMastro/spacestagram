@@ -3,6 +3,7 @@ import { FaRegHeart, FaHeart } from 'react-icons/fa'
 import styles from '../DisplayItem/DisplayItem.css'
 
 const DisplayItem = (props) => {
+
   const [like, setLike] = useState(false)
   const {
     id,
@@ -11,9 +12,11 @@ const DisplayItem = (props) => {
     title,
     date
   } = props
+//update like state 
   const likeClick = () => {
     setLike((prev) => !prev)
   }
+//when the like state changes get localstorage item 'likes and add this new post to it
   useEffect(() => {
     if (like) {
       const array = JSON.parse(localStorage.getItem('likes')) || []
