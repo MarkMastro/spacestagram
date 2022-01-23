@@ -1,21 +1,23 @@
-import React from "react";
+import React from 'react'
+import styles from './SearchBar.css'
 
-const SearchBar=(props)=>{
+const SearchBar = (props) => {
+  const { searchField, onChange, onClick } = props
 
-    const {searchField, onChange, onClick}=props
-    
-    return(
-        <div>  
-            <form onSubmit={e=>e.preventDefault}>
+  return (
+        <div>
+            <form onSubmit={e => e.preventDefault} label="Search">
                 <input
-                name="search" 
-                type="text" 
-                value={searchField} 
-                onChange={e=>{onChange(e.target.value)}}/>
+                name="search"
+                type="text"
+                value={searchField}
+                className={styles.input}
+                onChange={e => { onChange(e.target.value) }}
+                placeholder='Search'/>
                 <button onClick={onClick}>Search</button>
             </form>
         </div>
-    )
+  )
 }
 
-export default SearchBar;
+export default SearchBar

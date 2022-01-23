@@ -1,113 +1,97 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import useDataFetcher from "../hooks/useDataFetcher"
-import useEvent from "../hooks/useEvent";
-import SearchBar from "./SearchBar/SearchBar"
-import DisplayItem from "./DisplayItem/DisplayItem";
-import Results from "./Results/Results.js";
-import { FaHome } from "react-icons/fa";
+import React, { useEffect, useState } from 'react'
+import useDataFetcher from '../hooks/useDataFetcher'
+import useEvent from '../hooks/useEvent'
+import SearchBar from './SearchBar/SearchBar'
+import Results from './Results/Results.js'
+import { FaHome, FaRegHeart } from 'react-icons/fa'
+import styles from './Application.css'
 
+export default function Application (props) {
+  const [searchField, setSearchField] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [results, setResults] = useState([])
+  // const [page, setPage] = useState(1);
+  const [mode, setMode] = useState('Home')
+  const { searchAPI, randomPictureAPI } = useDataFetcher()
 
-export default function Application(props){
-    const [searchField, setSearchField] = useState("");
-    const [isLoading, setIsLoading] = useState(false)
-    const [results, setResults] = useState([]);
-    // const [page, setPage] = useState(1);
-    const [mode, setMode] = useState('Home')
-    const {searchAPI, randomPictureAPI}= useDataFetcher();
+  useEffect(() => {
+    randomPictureAPI()
+      .then((newResults) => {
+        setResults(newResults)
+        setIsLoading(false)
+      })
+  }, [])
 
-    // localStorage.setItem("likes", JSON.stringify([]))
+  const searchClick = (e) => {
+    e.preventDefault()
+    setMode('Search')
+    setResults([])
+    setIsLoading(true)
 
-    // const loader = useRef(null);
+    searchAPI(searchField)
+      .then(data => {
+        setResults(data)
+      })
+  }
 
-    // const handleObserver = useCallback((entries) => {
-    //     const target = entries[0];
-    //     if (target.isIntersecting) {
-    //       setPage((prev) => prev + 1);
-    //         console.log("page", page)
-         
-    //     }
-    //   }, []);
+  const homeClick = (e) => {
+    e.preventDefault()
+    setResults(['empty'])
+    setSearchField('')
+    randomPictureAPI()
+      .then((newResults) => {
+        setResults(newResults)
+        setIsLoading(false)
+      })
+    setMode('Home')
+  }
 
-    //   useEffect(() => {
-    //     const option = {
-    //       root: null,
-    //       rootMargin: "20px",
-    //       threshold: 0
-    //     };
-    //     const observer = new IntersectionObserver(handleObserver, option);
-    //     if (loader.current) observer.observe(loader.current);
-    //   }, [handleObserver]);
-    
-    const searchClick=(e)=>{
-        e.preventDefault();
-        console.log("search")
+  const loadLikesPage = () => {
+    setMode('Likes')
+    setResults(JSON.parse((localStorage.getItem('likes'))))
+  }
 
-        setMode('Search')
-        setResults([])
-        setIsLoading(true)
-
-        searchAPI(searchField)
-        .then(data=>{
-            setResults(data)
-        })
-        
-    }
-
-    const homeClick=(e)=>{
-        e.preventDefault();
-        console.log("home")
-        setResults([])
-        console.log("home results", results)
-        setSearchField('')
-        randomPictureAPI()
-        .then((newResults)=>{
-            setResults(newResults)
-        })
-        setMode('Home')
-    }
-    
-    const loadLikesPage=()=>{
-        setMode("Likes")
-        console.log("load likes", JSON.parse((localStorage.getItem("likes"))))
-       setResults(JSON.parse((localStorage.getItem("likes"))))
-    }
-
-    
   const handleScroll = () => {
-    if(mode == "Likes"){return}
+    if (mode === 'Likes') { return }
     if (isLoading) {
-      return;
+      return
     }
     if (window.scrollY + window.innerHeight >= document.body.offsetHeight) {
-        console.log("adding new comps")
-        setIsLoading(true)
-        randomPictureAPI()
-        .then((newResults)=>{
-            setResults([...results, ...newResults])
+      setIsLoading(true)
+      randomPictureAPI()
+        .then((newResults) => {
+          setResults([...results, ...newResults])
+          setIsLoading(false)
         })
     }
-  };
+  }
 
-  useEvent('scroll', handleScroll);
-  
-   
+  useEvent('scroll', handleScroll)
 
-    return(
+  return (
         <div>
             <main>
-                <div onClick={loadLikesPage}>
-                <h2> Like Page</h2>
+                <nav >
 
+                    <h2>Spacestagram</h2>
+                    <SearchBar onClick={searchClick} onChange={setSearchField}/>
+                <div className='nav-buttons'>
+                     <div onClick={homeClick}>
+                        <FaHome size={30}/>
+                    </div>
+                    <div onClick={loadLikesPage}>
+                    <FaRegHeart size={30} color='black'/>
+
+                    </div>
                 </div>
-                <SearchBar onClick={searchClick} onChange={setSearchField}/>
-                <div onClick={homeClick}>
-                    <FaHome/>
-                </div>
-                { results.length != 0 ? <Results mode ={mode} results= {results}/> : <h2>Your query returned no results</h2>}
+
+                </nav>
+                <div className='results'>
+                    { results.length !== 0 ? <Results mode ={mode} results= {results} /> : mode === 'Search' ? <h2>Your query returned no results</h2> : null}
                     {isLoading && <h2>Loading...</h2>}
+                </div>
 
             </main>
         </div>
-    )
+  )
 }
-
