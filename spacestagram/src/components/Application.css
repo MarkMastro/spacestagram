@@ -1,0 +1,29 @@
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px rgb(182, 181, 181) solid;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(224, 224, 224);
+    top:80px;
+}
+.results{
+margin-top: 50px;
+}
+.nav-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100px;
+}

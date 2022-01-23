@@ -4,6 +4,7 @@ import useEvent from '../hooks/useEvent'
 import SearchBar from './SearchBar/SearchBar'
 import Results from './Results/Results.js'
 import { FaHome, FaRegHeart } from 'react-icons/fa'
+import styles from './Application.css'
 
 export default function Application (props) {
   const [searchField, setSearchField] = useState('')
