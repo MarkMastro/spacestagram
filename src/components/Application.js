@@ -76,9 +76,9 @@ export default function Application (props) {
   return (
         <div>
             <main>
-                <nav >
+                <nav>
 
-                    <h2>Spacestagram</h2>
+                    <h2 className="logo">Spacestagram</h2>
                     <SearchBar onClick={searchClick} onChange={setSearchField}/>
                 <div className='nav-buttons'>
                      <div onClick={homeClick}>
