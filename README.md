@@ -7,6 +7,8 @@ A demonstration app for the Shopify Frontend Internship program
 
 For the purposes of this project, Shopify is extending our mission to Make Commerce Better for Everyone to include the whole entire universe. Please build us an app to help share photos from one of NASA’s image APIs.
 
+The live version of the app is available at www.markmastropaolo.com
+
 ### Technology
 
 This app was created in React and styled components.
@@ -26,3 +28,4 @@ As I continue to add projects to my portofolio I will be add more features to th
 * Comment section
 * Sharing
 * Mars Rover feed 
+* Refining to make it more accessible with Lighthouse reports 
