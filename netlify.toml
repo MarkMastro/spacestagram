@@ -3,3 +3,8 @@
 
 
   command = "npm run build"
+[[redirects]]
+from = “/spacestagram”
+to = “quizzical-davinci-6c6f32.netlify.app”
+status = 200
+force = true
