@@ -17,10 +17,14 @@ React was chosen to take advantage of the reusibility of components such as the 
 ### Features
 
 * Infinite scrolling
-* UI similar to Instagram
+* UI similar to Instagram!
+[UI](https://user-images.githubusercontent.com/84885238/157787803-4ca66fd9-33b3-4714-832c-91f3a8daaa57.PNG)
 * Random feed from Astronomy Picture of the Day on the Home page
+![Home page](https://user-images.githubusercontent.com/84885238/157787523-81f7da31-2c21-4889-a64b-a37c87cc1768.PNG)
 * Like/unlike functionality saved to localStorage and accessed on Likes page
+![Liking](https://user-images.githubusercontent.com/84885238/157787547-a8db969b-520d-489b-b351-c6a2dfcf915c.PNG)
 * Displays a loading state as feedback to the user when pictures are loading
+![Loading](https://user-images.githubusercontent.com/84885238/157787746-8257c8fe-63d9-43c3-a0f9-9e6bad77db92.PNG)
 
 ### Future Features
 As I continue to add projects to my portofolio I will be add more features to this project including:
@@ -29,3 +33,4 @@ As I continue to add projects to my portofolio I will be add more features to th
 * Sharing
 * Mars Rover feed 
 * Refining to make it more accessible with Lighthouse reports 
+
