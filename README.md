@@ -17,8 +17,8 @@ React was chosen to take advantage of the reusibility of components such as the 
 ### Features
 
 * Infinite scrolling
-* UI similar to Instagram!
-[UI](https://user-images.githubusercontent.com/84885238/157787803-4ca66fd9-33b3-4714-832c-91f3a8daaa57.PNG)
+* UI similar to Instagram
+![UI](https://user-images.githubusercontent.com/84885238/157787803-4ca66fd9-33b3-4714-832c-91f3a8daaa57.PNG)
 * Random feed from Astronomy Picture of the Day on the Home page
 ![Home page](https://user-images.githubusercontent.com/84885238/157787523-81f7da31-2c21-4889-a64b-a37c87cc1768.PNG)
 * Like/unlike functionality saved to localStorage and accessed on Likes page
